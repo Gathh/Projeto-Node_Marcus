@@ -3,36 +3,39 @@ import { sql } from './db.js';
 
 export class DatabasePostgres { 
   async listUsers() {
-    const users = await sql`select * from users`;
-    return users;
+    const busao = await sql`select * from busao`;
+    return busao;
   }
 
-  async createUser(user) {
+  async createBusao(busao) {
     const id = randomUUID();
     console.log('id', id);
-    const name = user.name;
-    const password = user.password;
-    const profile = user.profile;
+    const name = busao.name;
+    const linha = busao.linha;
+    const terminal = busao.terminal;
+    const Av = busao.Av;
     
     await sql`insert into users (id, name, password, profile)
-    values (${id}, ${name}, ${password}, ${profile})`
+    values (${id}, ${name}, ${linha}, ${terminal}, ${Av})`
   }
 
-  async updateUser(id, user) {
-    const name = user.name;
-    const password = user.password;
-    const profile = user.profile;
+  async updateBusao(id, busao) {
+    const name = busao.name;
+    const linha = busao.linha;
+    const terminal = busao.terminal;
+    const Av = busao.Av;
 
-    await sql`update users set 
+    await sql`update busao set 
         name = ${name},
-        password = ${password},
-        profile = ${profile}
+        linha = ${linha},
+        terminal = ${terminal},
+        Av = ${Av}
         where id = ${id}
     `;
   }
 
-  async deleteUser(id) {
-    await sql`delete from users where id = ${id}`
+  async deleteBusao(id) {
+    await sql`delete from busao where id = ${id}`
   }
 
 }
