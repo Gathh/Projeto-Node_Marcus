@@ -15,31 +15,31 @@ server.register(cors, {
 // ENDPOINTS (CRUD):
 
 // CREATE
-server.post('/users', async (request, reply) => {
+server.post('/Busao', async (request, reply) => {
     const body = request.body;
-    await databasePostgres.createUser(body);
+    await databasePostgres.createBusao(body);
     return reply.status(201).send();
 })
 
 // READE
-server.get('/users', async () => {
-    const users = await databasePostgres.listUsers();
-    return users;
+server.get('/Busao', async () => {
+    const busao = await databasePostgres.listBusao();
+    return busao;
 });
 
 // UPDATE
-server.put('/users/:id', async (request, reply) => {
-    const userID = request.params.id;
+server.put('/Busao/:id', async (request, reply) => {
+    const BusaoID = request.params.id;
     const body = request.body;
-    await databasePostgres.updateUser(userID, body);
+    await databasePostgres.updateBusao(busaoID, body);
 
     return reply.status(204).send();
 })
 
 // DELETE
-server.delete('/users/:id', async (request, reply) => {
+server.delete('/Busao/:id', async (request, reply) => {
     const userID = request.params.id;
-    await databasePostgres.deleteUser(userID);
+    await databasePostgres.deleteBusao(busaoID);
 
     return reply.status(204).send();
 })
